@@ -19,11 +19,18 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('test', 'TestController@index');
+Route::get('test/aaaa', 'TestController@aaa');
+
 Route::prefix('admin')->group(function() {
 //Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function(){
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
-    Route::get('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
-    Route::get('/test', 'TestController@index');
+    Route::post('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
+    
+    
+    Route::get('news/create', 'NewsAdminController@create');
+    Route::post('news/create', 'NewsAdminController@post');
+    
   });
